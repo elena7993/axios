@@ -1,25 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import { getMovie } from "./api";
+import { useQuery } from "@tanstack/react-query";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+  const { data, isLoading } = useQuery({
+    queryKey: ["movie/now_playing", "", ""],
+    queryFn: getMovie,
+  });
+
+  console.log(data);
+  console.log(isLoading);
+
+  return <div>app</div>;
+};
 
 export default App;
